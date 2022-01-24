@@ -40,13 +40,14 @@ module.exports = {
             verbose: true,
         }),
         new ExtensionReloaderPlugin({
-            entries: {
-                contentScript: "content-script",
-                background: "background",
-                extensionPage: "popup",
-            },
-            // Disabling to test compilation
-            // manifest: path.resolve(__dirname, "manifest.json")
+            // entries: {
+            //     contentScript: "content-script",
+            //     background: "background",
+            //     extensionPage: "popup",
+            // },
+            port: targetBrowser === "chrome" ? 9090 : 9091,
+            reloadPage: true,
+            manifest: path.resolve(__dirname, "manifest.json"),
         }),
 
         new MiniCssExtractPlugin({ filename: "style.css" }),
